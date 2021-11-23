@@ -100,7 +100,7 @@ def doCYK(tokenizedString, grammarFile):
     for i in range(1, len(linezero)):            # Traverses downwards so we make the other lines
         matched = []                            
         for j in range(len(linezero)-i):         # Traverses to the right so we start from the left to the right
-            matchedEl = []
+            matchedEl = set()
             for x in range(i):                      # on that point, we check the possible symbol boxes for checking
                 for startSymbol in cykArray[x][j]:
                     stringCheck = ''
@@ -111,7 +111,7 @@ def doCYK(tokenizedString, grammarFile):
                         for rule in grammar: # ['S', ['A B']]
                             for RHS in rule[1]: # ['A B']
                                 if stringCheck == RHS:
-                                    matchedEl.append(rule[0]) #appends the LHS to the matched array
+                                    matchedEl.add(rule[0]) #appends the LHS to the matched array
                                     # print(matchedEl)
             matched.append(matchedEl)
         cykArray.append(matched)
