@@ -13,6 +13,7 @@ def tokenize(code):
     token_specs = [
         # COMMENTS
         ('COMMENT', r'"""[^"]*"""'),
+        ('OLCOMMENT', r'#.*'),
         ('COMMENT2', r"'''[^']*'''"),
 
         # VAR TYPES
@@ -23,6 +24,17 @@ def tokenize(code):
         ('BOOL_TRUE', r"True"),
         ('BOOL_FALSE', r"False"),
         ('TYPE_NONE', r"None"),
+
+        # TYPE HINTING
+        ('TYPEH_DICT', r'dict'),
+        ('TYPEH_LIST', r'list'),
+        ('TYPEH_INT', r'int'),
+        ('TYPEH_STR', r'str'),
+        ('TYPEH_FLOAT', r'float'),
+        ('TYPEH_BOOL', r'bool'),
+        ('TYPEH_BYTES', r'bytes'),
+        ('TYPEH_TO', r'->'),
+
         # ASSIGNMENT OP
         ('ASSOP_PLUS', r'\+='),
         ('ASSOP_MIN', r'\-='),
@@ -31,6 +43,7 @@ def tokenize(code):
         ('ASSOP_MOD', r'%='),
         ('ASSOP_FLOOR', r'\/\/='),
         ('ASSOP_EXP', r'\*\*='),
+    
         # ARITH OP
         ('OP_FLOOR', r'\/\/'),
         ('OP_EXP', r'\*\*'),
@@ -39,17 +52,16 @@ def tokenize(code):
         ('OP_MULT', r'\*'),
         ('OP_DIV', r'\/'),
         ('OP_MOD', r'%'),
+
+        # BINARY OPERATOR
+        ('BINOP_NEGATE', r'~'),
+        ('BINOP_XOR', r'\^'),
+        ('BINOP_LEFTSHIFT', r'<<'),
+        ('BINOP_RIGHTSHIFT', r'>>'),
+
         # COMMA DOT
         ('DOT', r'\.'),
         ('COMMA', r','),
-
-        # COMPARATOR
-        ('COMP_EQ', r'=='),
-        ('COMP_NEQ', r'!='),
-        ('COMP_GREATER_EQ', r'>='),
-        ('COMP_LESS_EQ', r'<='),
-        ('COMP_GREATER', r'>'),
-        ('COMP_LESS', r'<'),
 
         # LOGICAL OP
         ('LOGIC_NOT', r'!'),
@@ -59,7 +71,14 @@ def tokenize(code):
         ('LOGIC_NOT2', r'not\s+'),
         ('LOGIC_OR2', r'or\s+'),
 
-        
+        # COMPARATOR
+        ('COMP_EQ', r'=='),
+        ('COMP_NEQ', r'!='),
+        ('COMP_GREATER_EQ', r'>='),
+        ('COMP_LESS_EQ', r'<='),
+        ('COMP_GREATER', r'>'),
+        ('COMP_LESS', r'<'),
+
         # ASSOP
         ('ASSOP', r'='),
         
@@ -77,6 +96,7 @@ def tokenize(code):
         ('AS', r'as\s+'),
         ('IN', r'in\s+'),
         ('IS', r'is\s+'),
+        ('BREAK', r'break'),
         ('CONT', r'continue'),
         ('CLASS', r'class\s+'),
         ('DEF', r'def\s+',),
@@ -86,9 +106,9 @@ def tokenize(code):
         ('ELIF', r'elif\W'),
         ('ELSE', r'else'),
         ('FOR', r'for\s+'),
-        ('RANGE', r'range'),
+        # ('RANGE', r'range'),
         ('WHILE', r'while\W'),
-        ('PRINT', r'print'),
+        # ('PRINT', r'print'),
         ('RAISE', r'raise\s+'),
         ('WITH', r'with\s+'),
         ('COLON', r':'),
