@@ -1,14 +1,7 @@
 import re
-import sys
-import os
-import shutil
 from typing import NamedTuple
 
-# # copies file to Tokenized
-# sys_path = sys.path[0]
-# destination_folder = "./Tokenized/"
-# destination_dir = os.path.join(sys_path, destination_folder)
-# shutil.copy("test.txt", destination_dir + "test.txt")
+# V1.1
 
 class Token(NamedTuple):
     type: str
@@ -18,6 +11,10 @@ class Token(NamedTuple):
 
 def tokenize(code):
     token_specs = [
+        # COMMENTS
+        ('COMMENT', r'"""[^"]*"""'),
+        ('COMMENT2', r"'''[^']*'''"),
+
         # VAR TYPES
         ('TYPE_FLOAT', r'\d+\.\d+'),
         ('TYPE_INT', r'\d+'),
@@ -91,8 +88,9 @@ def tokenize(code):
         ('FOR', r'for\s+'),
         ('RANGE', r'range'),
         ('WHILE', r'while\W'),
-        # (r'raise\s+'),
-        # (r'with\s+'),
+        ('PRINT', r'print'),
+        ('RAISE', r'raise\s+'),
+        ('WITH', r'with\s+'),
         ('COLON', r':'),
 
         # IDENTIFIER

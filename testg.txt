@@ -1,0 +1,11 @@
+S -> A B
+A -> C D | C F
+B -> c | E B
+C -> a
+D -> b
+E -> c
+F -> A D
+NUM -> INTEGER
+NUM -> SIGN INTEGER
+NUM -> FLOAT
+NUM -> SIGN FLOAT
