@@ -64,7 +64,54 @@ def zerothLine(tokenizedString):
     zerothLine.append(string)
     return zerothLine
 
-def doCYK(tokenizedString, grammar):
+
+def doCYK(tokenizedString, grammarFile):
+    """
+    masukannya tokenizedString sama source file grammarnya (contoh formatting grammar ada di testg.txt).
+    Returns True kalo salah satu hasil di ujungnya S. 
+    """
+    grammar = makeListOfGrammar(grammarFile)
     linezero = zerothLine(tokenizedString)
-    cykArray = [['.' for j in range(len(linezero))] for i in range(len(linezero))]
-    
+    cykArray = []
+    matched = []
+    # https://web.cs.ucdavis.edu/~rogaway/classes/120/winter12/CYK.pdf (naming reference)
+    # [['S', ['A B']], ['A', ['C D', 'C F']], ['B', ['c', 'E B']], ['C', ['a']], ['D', ['b']], ['E', ['c']], ['F', ['A D']]
+    for i in range(len(linezero)): # ['a', 'a', 'a', 'b', 'b', 'b', 'c']
+        matchedEl = []
+        for rule in grammar: # ['S', ['A B']]
+            for RHS in rule[1]: # ['A B']
+                if linezero[i] == RHS:
+                    matchedEl.append(rule[0]) #appends the LHS to the matched array
+        matched.append(matchedEl)
+    cykArray.append(matched)
+    #FIRST LINE DONE HORRAY, we now go on
+
+    for i in range(1, len(linezero)):            # Traverses downwards so we make the other lines
+        matched = []                            
+        for j in range(len(linezero)-i):         # Traverses to the right so we start from the left to the right
+            matchedEl = []
+            for x in range(i):                      # on that point, we check the possible symbol boxes for checking
+                for startSymbol in cykArray[x][j]:
+                    stringCheck = ''
+                    print(i, j, x)
+                    for endSymbol in cykArray[i-x-1][j+x+1]:
+                        stringCheck = startSymbol + ' ' + endSymbol
+                        print(stringCheck)
+                        for rule in grammar: # ['S', ['A B']]
+                            for RHS in rule[1]: # ['A B']
+                                if stringCheck == RHS:
+                                    matchedEl.append(rule[0]) #appends the LHS to the matched array
+                                    print(matchedEl)
+            matched.append(matchedEl)
+        cykArray.append(matched)
+        # print(cykArray)
+
+    hasSolutions = False
+    for solutions in cykArray[len(linezero)-1][0]:
+        if solutions == 'S':
+            hasSolutions = True
+    return hasSolutions
+
+
+
+print(doCYK("a a a b b b c", "testg.txt")) #make grammar di sini https://www.xarg.org/tools/cyk-algorithm/
