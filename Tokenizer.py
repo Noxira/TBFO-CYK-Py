@@ -138,5 +138,5 @@ def tokenize(code):
         elif kind == 'SKIP':
             continue
         elif kind == 'MISMATCH':
-            raise RuntimeError(f'{value!r} unexpected on line {line_num}')
+            raise RuntimeError(f'failed on tokenization, {value!r} unexpected on line {line_num}')
         yield Token(kind, value, line_num, column)

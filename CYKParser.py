@@ -72,8 +72,11 @@ def makeTokenizedString():
     tokenizedString = file.read()
     file.close()
     # print(tokenizedString)
+    tokenizedString = re.sub('OLCOMMENT ', '', tokenizedString)
+    tokenizedString = re.sub(' OLCOMMENT', '', tokenizedString)
     tokenizedString = re.sub(' COMMENT', '', tokenizedString)
-    # print(tokenizedString)
+    tokenizedString = re.sub('COMMENT ', '', tokenizedString)
+    print(tokenizedString)
     return tokenizedString[:(len(tokenizedString)-1)] #removes the space on the end
 
 def doCYK(tokenizedString, grammarFile):
