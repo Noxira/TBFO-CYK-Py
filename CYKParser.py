@@ -64,6 +64,11 @@ def zerothLine(tokenizedString):
     zerothLine.append(string)
     return zerothLine
 
+def makeTokenizedString():
+    file = open('tokenized.txt', 'r')
+    tokenizedString = file.read()
+    file.close()
+    return tokenizedString[:(len(tokenizedString)-1)] #removes the space on the end
 
 def doCYK(tokenizedString, grammarFile):
     """
@@ -93,15 +98,15 @@ def doCYK(tokenizedString, grammarFile):
             for x in range(i):                      # on that point, we check the possible symbol boxes for checking
                 for startSymbol in cykArray[x][j]:
                     stringCheck = ''
-                    print(i, j, x)
+                    # print(i, j, x)
                     for endSymbol in cykArray[i-x-1][j+x+1]:
                         stringCheck = startSymbol + ' ' + endSymbol
-                        print(stringCheck)
+                        # print(stringCheck)
                         for rule in grammar: # ['S', ['A B']]
                             for RHS in rule[1]: # ['A B']
                                 if stringCheck == RHS:
                                     matchedEl.append(rule[0]) #appends the LHS to the matched array
-                                    print(matchedEl)
+                                    # print(matchedEl)
             matched.append(matchedEl)
         cykArray.append(matched)
         # print(cykArray)
