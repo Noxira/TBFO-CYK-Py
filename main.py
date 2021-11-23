@@ -37,13 +37,3 @@ else:
             print('Syntax Error!')
     else:
         print('file '+sys.argv[1]+' tidak ditemukan!')
-
-[
-    [['IF'], ['BOOLEAN', 'EXPRESSION_IN_PAREN', 'EXPRESSION_IN_BRACKET', 'EXPRESSION', 'S', 'S'], ['COMP'], ['BOOLEAN', 'EXPRESSION_IN_PAREN', 'EXPRESSION_IN_BRACKET', 'EXPRESSION', 'S', 'S'], ['COLON'], ['RETURN'], ['BOOLEAN', 'EXPRESSION_IN_PAREN', 'EXPRESSION_IN_BRACKET', 'EXPRESSION', 'S', 'S']], 
-    [[], ['EXPRESSION9', 'EXP_COMP_EXP25'], [], [], [], ['RETURN_METHOD', 'S']], 
-    [[], ['EXPRESSION', 'EXPRESSION_IN_PAREN', 'EXPRESSION_IN_BRACKET', 'S', 'EXP_COMP_EXP', 'EXPRESSION_IN_PAREN'], [], [], []], 
-    [['IF_METHOD32'], [], [], []], 
-    [['IF_METHOD', 'S'], [], []], 
-    [[], []], 
-    [[]]
-]
