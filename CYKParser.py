@@ -119,4 +119,4 @@ def doCYK(tokenizedString, grammarFile):
 
 
 
-print(doCYK("a a a b b b c", "testg.txt")) #make grammar di sini https://www.xarg.org/tools/cyk-algorithm/
+print(doCYK("ID OPEN_PAREN TYPE_STR2 CLOSE_PAREN", "grammar.txt")) #make grammar di sini https://www.xarg.org/tools/cyk-algorithm/

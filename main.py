@@ -1,6 +1,7 @@
 import os
 import sys
 import Tokenizer
+import CYKParser as cyk
 
 """ main """
 
@@ -27,5 +28,11 @@ else:
         fileRes.truncate(0) #removes whatevers inside
         fileRes.write(result)
         fileRes.close()
+        tknstr = cyk.makeTokenizedString()
+        checksyntax = cyk.doCYK(tknstr,'grammar.txt')
+        if (checksyntax == True):
+            print('Program Accepted!!')
+        else:
+            print('Syntax Error!')
     else:
         print('file '+sys.argv[1]+' tidak ditemukan!')
