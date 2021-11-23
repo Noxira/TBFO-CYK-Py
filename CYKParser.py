@@ -50,6 +50,7 @@ def makeListOfGrammar(file):
             templateRHS.append(stringRHS)                               #all these are shitty implementations on fixing spaces
         templateGrammar[1] = templateRHS
         grammar.append(templateGrammar)
+    # print(grammar)
     return grammar
 
 def zerothLine(tokenizedString):
@@ -68,6 +69,7 @@ def makeTokenizedString():
     file = open('tokenized.txt', 'r')
     tokenizedString = file.read()
     file.close()
+    # print(tokenizedString)
     return tokenizedString[:(len(tokenizedString)-1)] #removes the space on the end
 
 def doCYK(tokenizedString, grammarFile):
@@ -109,7 +111,7 @@ def doCYK(tokenizedString, grammarFile):
                                     # print(matchedEl)
             matched.append(matchedEl)
         cykArray.append(matched)
-        # print(cykArray)
+    # print(cykArray)
 
     hasSolutions = False
     for solutions in cykArray[len(linezero)-1][0]:
@@ -119,4 +121,4 @@ def doCYK(tokenizedString, grammarFile):
 
 
 
-print(doCYK("ID OPEN_PAREN TYPE_STR2 CLOSE_PAREN", "grammar.txt")) #make grammar di sini https://www.xarg.org/tools/cyk-algorithm/
+# print(doCYK("ID OPEN_PAREN TYPE_STR2 CLOSE_PAREN", "grammar.txt")) #make grammar di sini https://www.xarg.org/tools/cyk-algorithm/

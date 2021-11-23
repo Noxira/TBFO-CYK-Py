@@ -13,8 +13,8 @@ def tokenize(code):
     token_specs = [
         # COMMENTS
         ('COMMENT', r'"""[^"]*"""'),
-        ('OLCOMMENT', r'#.*'),
         ('COMMENT2', r"'''[^']*'''"),
+        ('OLCOMMENT', r'#.*'),
 
         # VAR TYPES
         ('TYPE_FLOAT', r'\d+\.\d+'),

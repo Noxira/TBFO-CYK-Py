@@ -1,8 +1,2 @@
-for i in range(32):
-    """
-    Multiline comment test
-    """
-    print("Test")
-    print('test')
-    if true and false or true:
-        print(32.2)
+if True == True:
+    return True
