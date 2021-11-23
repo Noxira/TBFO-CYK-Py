@@ -122,26 +122,3 @@ def tokenize(code):
         elif kind == 'MISMATCH':
             raise RuntimeError(f'{value!r} unexpected on line {line_num}')
         yield Token(kind, value, line_num, column)
-
-
-
-statements = """"""
-file = open('test.txt', 'r')
-read_content = file.read()
-statements = statements + read_content
-file.close()
-
-result = """"""
-line = int(1)
-for token in tokenize(statements):
-    if token.line != line:
-        line += 1
-        result += '\n'
-
-    result += token.type + ' '
-
-print(result)
-fileRes = open('tokenized.txt', 'a')
-fileRes.truncate(0) #removes whatevers inside
-fileRes.write(result)
-fileRes.close()
