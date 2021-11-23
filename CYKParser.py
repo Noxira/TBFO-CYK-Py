@@ -1,3 +1,5 @@
+import re
+
 def makeListOfGrammar(file):
     """
     S -> AB
@@ -70,6 +72,8 @@ def makeTokenizedString():
     tokenizedString = file.read()
     file.close()
     # print(tokenizedString)
+    tokenizedString = re.sub(' COMMENT', '', tokenizedString)
+    # print(tokenizedString)
     return tokenizedString[:(len(tokenizedString)-1)] #removes the space on the end
 
 def doCYK(tokenizedString, grammarFile):
@@ -111,7 +115,7 @@ def doCYK(tokenizedString, grammarFile):
                                     # print(matchedEl)
             matched.append(matchedEl)
         cykArray.append(matched)
-    print(cykArray)
+    # print(cykArray)
 
     hasSolutions = False
     for solutions in cykArray[len(linezero)-1][0]:
