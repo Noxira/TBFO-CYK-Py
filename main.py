@@ -2,6 +2,7 @@ import os
 import sys
 import Tokenizer
 import CYKParser as cyk
+import re
 
 """ main """
 
@@ -23,7 +24,7 @@ else:
             #     line += 1
             #     result += '\n'
             result += token.type + ' '
-        # result = re.sub()
+        result = re.sub('2', '', result)
         # print(result)
         fileRes = open('tokenized.txt', 'a')
         fileRes.truncate(0) #removes whatevers inside
